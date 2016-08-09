@@ -5,21 +5,21 @@ object ScalaTest extends App {
 
   printf(printFormat, "#", "Valid?", "Validation Results")
 
-  var member: MembershipNumber = MembershipNumber("a12345")
-  printf(printFormat, member.Id, member.isValid(), member.validate()s)
+  var mn: MembershipNumber = MembershipNumber("a12345")
+  printf(printFormat, mn.Id, mn.isValid, mn.validate)
 
-  member = MembershipNumber("A12")
-  printf(printFormat, member.Id, member.isValid(), member.validate())
+  mn = MembershipNumber("A12")
+  printf(printFormat, mn.Id, mn.isValid, mn.validate)
 
-  member = MembershipNumber("A123456789101112")
-  printf(printFormat, member.Id, member.isValid(), member.validate())
+  mn = MembershipNumber("A123456789101112")
+  printf(printFormat, mn.Id, mn.isValid, mn.validate)
 
-  member = MembershipNumber("A12345CS")
-  printf(printFormat, member.Id, member.isValid(), member.validate())
+  mn = MembershipNumber("A12345CS")
+  printf(printFormat, mn.Id, mn.isValid, mn.validate)
 
-  member = MembershipNumber("A12345A")
-  printf(printFormat, member.Id, member.isValid(), member.validate())
+  mn = MembershipNumber("A12345A")
+  printf(printFormat, mn.Id, mn.isValid, mn.validate)
 
-  member = MembershipNumber("A12345ADA")
-  printf(printFormat, member.Id, member.isValid(), member.validate())
+  mn = MembershipNumber("A12345ADA")
+  printf(printFormat, mn.Id, mn.isValid, mn.validate)
 }

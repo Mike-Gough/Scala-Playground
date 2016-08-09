@@ -2,18 +2,15 @@ import scala.util.{Failure, Success, Try}
 
 package csc.membership {
 
-  // Member class
-  case class MembershipNumber(accountNumber: String) {
-    var Id: String = accountNumber
+  case class MembershipNumber(id: String) {
+    var Id: String = id
 
     override def toString: String = Id.toUpperCase()
 
-    // Constants
-    var IdLengthMinimum: Int = 4
-    var IdLengthMaximum: Int = 11
-
-    // Validate function
-    def validate(): List[Try[String]] = {
+    def validate: List[Try[String]] = {
+      val IdLengthMinimum: Int = 4
+      val IdLengthMaximum: Int = 11
+      val schemes = List("CS", "PS", "OS", "PG", "MS", "DF", "DB", "AD")
       val patternFormat = "^((Z|P)?\\d{4,8}((CS|PS|OS|PG)|((CS|PS|OS|PG)[A-W]))?)|((A|N|R)?\\d{4,10}((MS|DF|DB|AD)|((MS|DF|DB|AD)[A-W])))(X|X\\d{2})?$".r
       val patternScheme = "[A-Z]{2}".r
 
@@ -39,16 +36,14 @@ package csc.membership {
       }
 
       def validSchemeCode(id: String): Try[String] = {
-        val schemes = List("CS", "PS", "OS", "PG", "MS", "DF", "DB", "AD")
         val result = patternScheme.findFirstIn(id)
 
         if (result.isEmpty)
           Success(id)
-        else {
+        else
           schemes.find(x => x == result.getOrElse("not specified")) match {
             case Some(_) => Success(id)
             case None => Failure(new IllegalArgumentException("does not contain a valid pension code suffix. Valid codes include CS, PS, OS, PG, MS, DF, DB and AD."))
-          }
         }
       }
 
@@ -59,13 +54,12 @@ package csc.membership {
           Success(id)
       }
 
-      // Return validation failure descriptions
-      val results: List[Try[String]] = List(validCase(Id), validMinLength(Id), validMaxLength(Id), validSchemeCode(Id), validFormat(Id)).filter(x => x.isFailure)
-      return results
+      // Return validation failures
+      List(validCase(Id), validMinLength(Id), validMaxLength(Id), validSchemeCode(Id), validFormat(Id)).filter(x => x.isFailure)
     }
 
-    def isValid(): Boolean = {
-      return validate().forall(x => x.isSuccess)
+    def isValid: Boolean = {
+      validate.forall(x => x.isSuccess)
     }
   }
 }
