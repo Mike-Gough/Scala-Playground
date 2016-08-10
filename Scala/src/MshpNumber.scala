@@ -6,46 +6,43 @@ package csc.membership {
     var external_id = prefix + number + pensionCode + suffix
 
     override def validate: List[Try[String]] = {
-      val (minLength, maxLength) = (4, 11)
+      val (minLength, maxLength) = (4, 10)
 
       def validCase(id: String): Try[String] = {
-        if (id.toUpperCase() != id)
-          Failure(new IllegalArgumentException("must be in upper case."))
-        else
-          Success(id)
+        id.toUpperCase() == id match {
+          case true => Success(id)
+          case false => Failure(new IllegalArgumentException("must be in upper case."))
+        }
       }
 
       def validMinLength(id: String): Try[String] = {
-        if (id.length <= minLength)
-          Failure(new IllegalArgumentException(f"must be greater than or equal to $minLength%1d characters in length."))
-        else
-          Success(id)
+        id.length >= minLength match {
+          case true => Success(id)
+          case false => Failure(new IllegalArgumentException(f"must be greater than or equal to $minLength%1d characters in length."))
+        }
       }
 
       def validMaxLength(id: String): Try[String] = {
-        if (id.length > maxLength)
-          Failure(new IllegalArgumentException(f"must be less than $maxLength%2d characters in length."))
-        else
-          Success(id)
+        id.length <= maxLength match {
+          case true => Success(id)
+          case false => Failure(new IllegalArgumentException(f"must be less than or equal to $maxLength%2d characters in length."))
+        }
       }
 
       def validSchemeCode(id: String): Try[String] = {
         val patternScheme = "[A-Z]{2}".r
-
-        if (patternScheme.findFirstIn(id).isEmpty)
-          Success(id)
-        else
-          List("CS", "PS", "OS", "PG", "MS", "DF", "DB", "AD").find(x => x == patternScheme.findFirstIn(id).getOrElse("not specified")) match {
-            case Some(_) => Success(id)
-            case None => Failure(new IllegalArgumentException("does not contain a valid pension code suffix. Valid codes include CS, PS, OS, PG, MS, DF, DB and AD."))
-          }
+        val schemes = List("CS", "PS", "OS", "PG", "MS", "DF", "DB", "AD")
+        schemes.contains(patternScheme.findFirstIn(id).getOrElse("CS")) match {
+          case true => Success(id)
+          case false => Failure(new IllegalArgumentException("does not contain a valid pension code suffix. Valid codes include " + schemes.mkString(", ") + "."))
+        }
       }
 
       def validFormat(id: String): Try[String] = {
-        if (!id.matches("^((Z|P)?\\d{4,8}((CS|PS|OS|PG)|((CS|PS|OS|PG)[A-W]))?)|((A|N|R)?\\d{4,10}((MS|DF|DB|AD)|((MS|DF|DB|AD)[A-W])))(X|X\\d{2})?$"))
-          Failure(new IllegalArgumentException("is not a valid Australian Government Service (AGS) or Military Service Number."))
-        else
-          Success(id)
+        id.matches("^((Z|P)?\\d{4,8}((CS|PS|OS|PG)|((CS|PS|OS|PG)[A-W]))?)|((A|N|R)?\\d{4,10}((MS|DF|DB|AD)|((MS|DF|DB|AD)[A-W])))(X|X\\d{2})?$") match {
+          case true => Success(id)
+          case false => Failure(new IllegalArgumentException("is not a valid Australian Government Service (AGS) or Military Service Number."))
+        }
       }
 
       // Return validation failures

@@ -17,12 +17,14 @@ object ScalaTest extends App {
   mn = new MshpNumber("A12345CS")
   printf(printFormat, mn.number, mn.isValid, mn.validate)
 
+  mn = new MshpNumber("A12345LA")
+  printf(printFormat, mn.number, mn.isValid, mn.validate)
+
   mn = new MshpNumber("A12345A")
   printf(printFormat, mn.number, mn.isValid, mn.validate)
 
   mn = new MshpNumber("A12345ADA")
   printf(printFormat, mn.number, mn.isValid, mn.validate)
-
 
   var printFormat1: String = "%-12.12s %-12.12s %-12.12s %-12.12s%n"
   println
