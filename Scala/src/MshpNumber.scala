@@ -38,6 +38,41 @@ package csc.membership {
         }
       }
 
+      def validSchemeCodeForSource(id: String): Try[String] = {
+        val MembershipNumberPattern = "^(Z|P|A|N|R)?(\\d{4,10})(CS|PS|OS|PG|MS|DF|DB|AD)?$".r
+        val milSchemes = List("MS", "DF", "DB", "AD")
+        val civSchemes = List("MS", "DF", "DB", "AD")
+        id.matches(MembershipNumberPattern.regex) match {
+          case true => id match {
+            case MembershipNumberPattern(prefix, number, pension) =>
+              prefix match {
+                case "A" => milSchemes.contains(pension) match {
+                  case true => Success(id)
+                  case false => Failure(new IllegalArgumentException("Military Service Numbers cannot have a civilian pension code suffix."))
+                }
+                case "N" => milSchemes.contains(pension) match {
+                  case true => Success(id)
+                  case false => Failure(new IllegalArgumentException("Military Service Numbers cannot have a civilian pension code suffix."))
+                }
+                case "R" => milSchemes.contains(pension) match {
+                  case true => Success(id)
+                  case false => Failure(new IllegalArgumentException("Military Service Numbers cannot have a civilian pension code suffix."))
+                }
+                case "Z" => civSchemes.contains(pension) match {
+                  case true => Success(id)
+                  case false => Failure(new IllegalArgumentException("Australian Government Service Numbers cannot have a military pension code suffix."))
+                }
+                case "P" => civSchemes.contains(pension) match {
+                  case true => Success(id)
+                  case false => Failure(new IllegalArgumentException("Australian Government Service Numbers cannot have a military pension code suffix."))
+                }
+                case _ => Success(id)
+              }
+          }
+          case false => Success(id)
+        }
+      }
+
       def validFormat(id: String): Try[String] = {
         id.matches("^((Z|P)?\\d{4,8}((CS|PS|OS|PG)|((CS|PS|OS|PG)[A-W]))?)|((A|N|R)?\\d{4,10}((MS|DF|DB|AD)|((MS|DF|DB|AD)[A-W])))(X|X\\d{2})?$") match {
           case true => Success(id)
@@ -46,7 +81,7 @@ package csc.membership {
       }
 
       // Return validation failures
-      List(validCase(external_id), validMinLength(external_id), validMaxLength(external_id), validSchemeCode(external_id), validFormat(external_id)).filter(x => x.isFailure)
+      List(validCase(external_id), validMinLength(external_id), validMaxLength(external_id), validSchemeCode(external_id), validSchemeCodeForSource(external_id), validFormat(external_id)).filter(x => x.isFailure)
     }
   }
 

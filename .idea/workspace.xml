@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4b57c4ef-87b4-4ff7-b0d2-51a45b126569" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Scala/src/Test.scala" afterPath="$PROJECT_DIR$/Scala/src/Test.scala" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Scala/src/MshpNumber.scala" afterPath="$PROJECT_DIR$/Scala/src/MshpNumber.scala" />
     </list>
     <ignored path="Playground.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -51,17 +51,17 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MshpNumber.scala" pinned="false" current-in-tab="false">
+      <file leaf-file-name="MshpNumber.scala" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Scala/src/MshpNumber.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="310">
-              <caret line="27" column="61" selection-start-line="27" selection-start-column="32" selection-end-line="27" selection-end-column="61" />
+            <state relative-caret-position="255">
+              <caret line="17" column="53" selection-start-line="17" selection-start-column="53" selection-end-line="17" selection-end-column="53" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Test.scala" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Test.scala" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Scala/src/Test.scala">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="220">
@@ -107,8 +107,8 @@
         <option value="$PROJECT_DIR$/src/MembershipNumber.scala" />
         <option value="$PROJECT_DIR$/Scala/src/Member.scala" />
         <option value="$PROJECT_DIR$/Scala/src/MembershipNumber.scala" />
-        <option value="$PROJECT_DIR$/Scala/src/MshpNumber.scala" />
         <option value="$PROJECT_DIR$/Scala/src/Test.scala" />
+        <option value="$PROJECT_DIR$/Scala/src/MshpNumber.scala" />
       </list>
     </option>
   </component>
@@ -788,14 +788,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Scala/src/MshpNumber.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="310">
-          <caret line="27" column="61" selection-start-line="27" selection-start-column="32" selection-end-line="27" selection-end-column="61" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Scala/src/Test.scala">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="220">
@@ -803,6 +795,14 @@
           <folding>
             <element signature="e#0#52#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Scala/src/MshpNumber.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="53" selection-start-line="17" selection-start-column="53" selection-end-line="17" selection-end-column="53" />
+          <folding />
         </state>
       </provider>
     </entry>
