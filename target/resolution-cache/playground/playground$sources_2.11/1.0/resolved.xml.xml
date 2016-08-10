@@ -4,7 +4,7 @@
 		module="playground$sources_2.11"
 		revision="1.0"
 		status="integration"
-		publication="20160809123146"
+		publication="20160810103641"
 	/>
 	<configurations>
 		<conf name="compile" visibility="public" description=""/>

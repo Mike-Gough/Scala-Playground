@@ -4,7 +4,7 @@
 		module="playground$sbt_2.11"
 		revision="1.0"
 		status="integration"
-		publication="20160809123144"
+		publication="20160810103639"
 	/>
 	<configurations>
 		<conf name="default" visibility="public"/>

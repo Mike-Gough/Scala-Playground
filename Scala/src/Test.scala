@@ -1,25 +1,38 @@
-import csc.membership.MembershipNumber
+import csc.membership.{MembershipNumber, MshpNumber}
 
 object ScalaTest extends App {
   var printFormat: String = "%-16.16s %-8.8s %-150.150s%n"
 
   printf(printFormat, "#", "Valid?", "Validation Results")
 
-  var mn: MembershipNumber = MembershipNumber("a12345")
-  printf(printFormat, mn.Id, mn.isValid, mn.validate)
+  var mn: MembershipNumber = new MshpNumber("a12345")
+  printf(printFormat, mn.number, mn.isValid, mn.validate)
 
-  mn = MembershipNumber("A12")
-  printf(printFormat, mn.Id, mn.isValid, mn.validate)
+  mn = new MshpNumber("A12")
+  printf(printFormat, mn.number, mn.isValid, mn.validate)
 
-  mn = MembershipNumber("A123456789101112")
-  printf(printFormat, mn.Id, mn.isValid, mn.validate)
+  mn = new MshpNumber("A123456789101112")
+  printf(printFormat, mn.number, mn.isValid, mn.validate)
 
-  mn = MembershipNumber("A12345CS")
-  printf(printFormat, mn.Id, mn.isValid, mn.validate)
+  mn = new MshpNumber("A12345CS")
+  printf(printFormat, mn.number, mn.isValid, mn.validate)
 
-  mn = MembershipNumber("A12345A")
-  printf(printFormat, mn.Id, mn.isValid, mn.validate)
+  mn = new MshpNumber("A12345A")
+  printf(printFormat, mn.number, mn.isValid, mn.validate)
 
-  mn = MembershipNumber("A12345ADA")
-  printf(printFormat, mn.Id, mn.isValid, mn.validate)
+  mn = new MshpNumber("A12345ADA")
+  printf(printFormat, mn.number, mn.isValid, mn.validate)
+
+
+  var printFormat1: String = "%-12.12s %-12.12s %-12.12s %-12.12s%n"
+  println
+  printf(printFormat1, "Prefix", "#", "Scheme", "Suffix")
+
+  // given a membership number, extract the components we need to match on
+  mn match {
+    case MshpNumber("A", number, "AD", suffix) =>
+      printf(printFormat1, "Army", number, "ADFS", suffix)
+    case _ =>
+      printf("Invalid membership number")
+  }
 }
