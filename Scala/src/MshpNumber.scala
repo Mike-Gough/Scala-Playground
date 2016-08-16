@@ -29,10 +29,19 @@ package csc.membership {
       }
 
       def validSchemeCodeForSource(id: String): Try[String] = {
+<<<<<<< HEAD
+=======
+        val MembershipNumberPattern = "^(Z|P|A|N|R)?(\\d{4,10})(CS|PS|OS|PG|MS|DF|DB|AD)?$".r
+        val milSchemes = List("MS", "DF", "DB", "AD")
+        val civSchemes = List("MS", "DF", "DB", "AD")
+        val patternScheme = "[A-Z]{2}".r
+        val schemes = List("CS", "PS", "OS", "PG", "MS", "DF", "DB", "AD")
+>>>>>>> origin/master
         schemes.contains(patternScheme.findFirstIn(id).getOrElse("CS")) match {
           case true => Success(id)
           case false => id.matches(MembershipNumberPattern.regex) match {
             case true => id match {
+<<<<<<< HEAD
               case MembershipNumberPattern(prefix, number, pension, suffix) =>
                 prefix match {
                   case "A" | "N" | "R" => pension match {
@@ -42,6 +51,29 @@ package csc.membership {
                   case "Z" | "P" => pension match {
                     case "MS" | "DF" | "DB" | "AD" => Success(id)
                     case _ => Failure(new IllegalArgumentException("Australian Government Service Numbers cannot have a military pension code suffix."))
+=======
+              case MembershipNumberPattern(prefix, number, pension) =>
+                prefix match {
+                  case "A" => milSchemes.contains(pension) match {
+                    case true => Success(id)
+                    case false => Failure(new IllegalArgumentException("Military Service Numbers cannot have a civilian pension code suffix."))
+                  }
+                  case "N" => milSchemes.contains(pension) match {
+                    case true => Success(id)
+                    case false => Failure(new IllegalArgumentException("Military Service Numbers cannot have a civilian pension code suffix."))
+                  }
+                  case "R" => milSchemes.contains(pension) match {
+                    case true => Success(id)
+                    case false => Failure(new IllegalArgumentException("Military Service Numbers cannot have a civilian pension code suffix."))
+                  }
+                  case "Z" => civSchemes.contains(pension) match {
+                    case true => Success(id)
+                    case false => Failure(new IllegalArgumentException("Australian Government Service Numbers cannot have a military pension code suffix."))
+                  }
+                  case "P" => civSchemes.contains(pension) match {
+                    case true => Success(id)
+                    case false => Failure(new IllegalArgumentException("Australian Government Service Numbers cannot have a military pension code suffix."))
+>>>>>>> origin/master
                   }
                   case _ => Success(id)
                 }
