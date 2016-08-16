@@ -1,5 +1,3 @@
-import scala.util.{Try}
-
 package csc.membership {
 
   trait MembershipNumber {
@@ -10,10 +8,10 @@ package csc.membership {
 
     override def toString: String = (prefix + number + pensionCode + suffix).toUpperCase()
 
-    def validate: List[Try[String]]
+    def validate: List[String]
 
     def isValid: Boolean = {
-      validate.forall(x => x.isSuccess)
+      validate.isEmpty
     }
   }
 }

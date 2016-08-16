@@ -9,64 +9,43 @@ object ScalaTest extends App {
   var mn: MembershipNumber = new MshpNumber("a12345")
   printf(printFormat, mn.number, mn.isValid, mn.isValid match {
     case true => ""
-    case false => mn.validate.head match {
-      case Success(x) => ""
-      case Failure(x) => mn.validate.head.failed.get.getMessage
-    }
+    case false => mn.validate.head
   })
 
   mn = new MshpNumber("A12")
   printf(printFormat, mn.number, mn.isValid, mn.isValid match {
     case true => ""
-    case false => mn.validate.head match {
-      case Success(x) => ""
-      case Failure(x) => mn.validate.head.failed.get.getMessage
-    }
+    case false => mn.validate.head
   })
 
   mn = new MshpNumber("A123456789101112")
   printf(printFormat, mn.number, mn.isValid, mn.isValid match {
     case true => ""
-    case false => mn.validate.head match {
-      case Success(x) => ""
-      case Failure(x) => mn.validate.head.failed.get.getMessage
-    }
+    case false => mn.validate.head
   })
 
   mn = new MshpNumber("A12345CS")
   printf(printFormat, mn.number, mn.isValid, mn.isValid match {
     case true => ""
-    case false => mn.validate.head match {
-      case Success(x) => ""
-      case Failure(x) => mn.validate.head.failed.get.getMessage
-    }
+    case false => mn.validate.head
   })
 
   mn = new MshpNumber("A12345LA")
   printf(printFormat, mn.number, mn.isValid, mn.isValid match {
     case true => ""
-    case false => mn.validate.head match {
-      case Success(x) => ""
-      case Failure(x) => mn.validate.head.failed.get.getMessage
-    }
+    case false => mn.validate.head
   })
 
   mn = new MshpNumber("A12345A")
   printf(printFormat, mn.number, mn.isValid, mn.isValid match {
     case true => ""
-    case false => mn.validate.head match {
-      case Success(x) => ""
-      case Failure(x) => mn.validate.head.failed.get.getMessage
-    }
+    case false => mn.validate.head
   })
 
   mn = new MshpNumber("A12345ADA")
   printf(printFormat, mn.number, mn.isValid, mn.isValid match {
     case true => ""
-    case false => mn.validate.head match {
-      case Success(x) => ""
-      case Failure(x) => mn.validate.head.failed.get.getMessage
-    }
+    case false => mn.validate.head
   })
 
   var printFormat1: String = "%-12.12s %-12.12s %-12.12s %-12.12s%n"
