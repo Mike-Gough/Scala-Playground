@@ -48,6 +48,18 @@ object ScalaTest extends App {
     case false => mn.validate.head
   })
 
+  mn = new MshpNumber("50143894")
+  printf(printFormat, mn.number, mn.isValid, mn.isValid match {
+    case true => ""
+    case false => mn.validate.head
+  })
+
+  mn = new MshpNumber("50143895")
+  printf(printFormat, mn.number, mn.isValid, mn.isValid match {
+    case true => ""
+    case false => mn.validate.head
+  })
+
   var printFormat1: String = "%-12.12s %-12.12s %-12.12s %-12.12s%n"
   println
   printf(printFormat1, "Prefix", "#", "Scheme", "Suffix")
